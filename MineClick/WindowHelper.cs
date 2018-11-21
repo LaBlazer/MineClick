@@ -7,6 +7,16 @@ namespace MineClick
 {
     public class Window
     {
+        [DllImport("user32")]
+        private static extern Int32 SendMessage(int hWnd, int Msg, int wParam, [MarshalAs(UnmanagedType.LPStr)] string lParam);
+
+        [DllImport("user32")]
+        private static extern Int32 SendMessage(int hWnd, int Msg, int wParam, int lParam);
+
+        [DllImport("user32")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool ShowWindow(int hWnd, int nCmdShow);
+
         public const int WM_COMMAND = 0x111;
         public const int WM_LBUTTONDOWN = 0x201;
         public const int WM_LBUTTONUP = 0x202;
@@ -19,16 +29,6 @@ namespace MineClick
 
         private const int SW_MAXIMIZE = 3;
         private const int SW_MINIMIZE = 6;
-
-        [DllImport("User32.dll")]
-        private static extern Int32 SendMessage(int hWnd, int Msg, int wParam, [MarshalAs(UnmanagedType.LPStr)] string lParam);
-
-        [DllImport("User32.dll")]
-        private static extern Int32 SendMessage(int hWnd,int Msg, int wParam, int lParam);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool ShowWindow(int hWnd, int nCmdShow);
 
         public string Title;
         public string Class;
