@@ -28,69 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.comboMinecraftProcess = new System.Windows.Forms.ComboBox();
+            this.comboMinecraftProcess = new MetroFramework.Controls.MetroComboBox();
+            this.toolTip = new MetroFramework.Components.MetroToolTip();
+            this.styleManager = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.toggleClicker = new MetroFramework.Controls.MetroToggle();
+            this.labelHelp = new MetroFramework.Controls.MetroLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.styleManager)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(13, 12);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(4);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(176, 46);
-            this.btnStart.TabIndex = 2;
-            this.btnStart.Text = "START";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // btnStop
-            // 
-            this.btnStop.Enabled = false;
-            this.btnStop.Location = new System.Drawing.Point(197, 12);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(4);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(164, 47);
-            this.btnStop.TabIndex = 3;
-            this.btnStop.Text = "STOP";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // comboMinecraftProcess
             // 
-            this.comboMinecraftProcess.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboMinecraftProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboMinecraftProcess.FormattingEnabled = true;
-            this.comboMinecraftProcess.Location = new System.Drawing.Point(12, 66);
+            this.comboMinecraftProcess.ItemHeight = 23;
+            this.comboMinecraftProcess.Location = new System.Drawing.Point(23, 63);
             this.comboMinecraftProcess.Name = "comboMinecraftProcess";
-            this.comboMinecraftProcess.Size = new System.Drawing.Size(349, 24);
-            this.comboMinecraftProcess.TabIndex = 4;
+            this.comboMinecraftProcess.Size = new System.Drawing.Size(285, 29);
+            this.comboMinecraftProcess.TabIndex = 6;
+            this.toolTip.SetToolTip(this.comboMinecraftProcess, "Select the correct Minecraft process");
             this.comboMinecraftProcess.SelectedIndexChanged += new System.EventHandler(this.comboMinecraftProcess_SelectedIndexChanged);
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 20000;
+            this.toolTip.InitialDelay = 350;
+            this.toolTip.ReshowDelay = 100;
+            // 
+            // styleManager
+            // 
+            this.styleManager.Owner = this;
+            this.styleManager.Style = MetroFramework.MetroColorStyle.Green;
+            this.styleManager.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // toggleClicker
+            // 
+            this.toggleClicker.AutoSize = true;
+            this.toggleClicker.FontSize = MetroFramework.MetroLinkSize.Medium;
+            this.toggleClicker.Location = new System.Drawing.Point(228, 98);
+            this.toggleClicker.Name = "toggleClicker";
+            this.toggleClicker.Size = new System.Drawing.Size(80, 19);
+            this.toggleClicker.TabIndex = 7;
+            this.toggleClicker.Text = "Off";
+            this.toolTip.SetToolTip(this.toggleClicker, "Turn on the autoclicker");
+            this.toggleClicker.UseVisualStyleBackColor = true;
+            this.toggleClicker.CheckedChanged += new System.EventHandler(this.toggleClicker_CheckedChanged);
+            // 
+            // labelHelp
+            // 
+            this.labelHelp.AutoSize = true;
+            this.labelHelp.Cursor = System.Windows.Forms.Cursors.Help;
+            this.labelHelp.Location = new System.Drawing.Point(23, 98);
+            this.labelHelp.Name = "labelHelp";
+            this.labelHelp.Size = new System.Drawing.Size(80, 19);
+            this.labelHelp.TabIndex = 8;
+            this.labelHelp.Text = "How to run?";
+            this.toolTip.SetToolTip(this.labelHelp, resources.GetString("labelHelp.ToolTip"));
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 102);
+            this.ClientSize = new System.Drawing.Size(331, 137);
+            this.Controls.Add(this.labelHelp);
+            this.Controls.Add(this.toggleClicker);
             this.Controls.Add(this.comboMinecraftProcess);
-            this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.btnStart);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "Main";
+            this.Resizable = false;
             this.Text = "MineClick by LBLZR_";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.styleManager)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.ComboBox comboMinecraftProcess;
+        private MetroFramework.Controls.MetroComboBox comboMinecraftProcess;
+        private MetroFramework.Components.MetroToolTip toolTip;
+        private MetroFramework.Components.MetroStyleManager styleManager;
+        private MetroFramework.Controls.MetroToggle toggleClicker;
+        private MetroFramework.Controls.MetroLabel labelHelp;
     }
 }
 

@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Text;
 using System.Collections;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace MineClick
 {
@@ -27,6 +27,8 @@ namespace MineClick
         public const int WM_KEYDOWN = 0x100;
         public const int WM_KEYUP = 0x101;
 
+        private const int SW_HIDE = 0;
+        private const int SW_SHOW = 5;
         private const int SW_MAXIMIZE = 3;
         private const int SW_MINIMIZE = 6;
 
@@ -47,6 +49,16 @@ namespace MineClick
         public void Maximize()
         {
             ShowWindow(Handle, SW_MAXIMIZE);
+        }
+
+        public void Hide()
+        {
+            ShowWindow(Handle, SW_HIDE);
+        }
+
+        public void Show()
+        {
+            ShowWindow(Handle, SW_SHOW);
         }
     }
 

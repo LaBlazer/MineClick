@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
 namespace MineClick
 {
-    public partial class Main : Form
+    public partial class Main : MetroForm
     {
         public Main()
         {
@@ -13,6 +14,13 @@ namespace MineClick
         private Window mcWindow;
         private Window[] windows;
         private System.Timers.Timer clickTimer = new System.Timers.Timer();
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            UpdateProcesses();
+            clickTimer.Interval = 20000;
+            clickTimer.Elapsed += clickTimer_Elapsed;
+        }
 
         private void UpdateProcesses()
         {
@@ -32,12 +40,12 @@ namespace MineClick
                 comboMinecraftProcess.Items.Clear();
                 foreach (var x in windows)
                 {
-                    var text = $"{x.Title}, hwnd: {x.Handle:X}";
+                    var text = $"[0x{x.Handle:X}] {x.Title}";
                     //Console.WriteLine(text);
                     comboMinecraftProcess.Items.Add(text);
                 }
 
-                if (comboMinecraftProcess.SelectedIndex == -1 || comboMinecraftProcess.SelectedIndex >= windows.Length)
+                if (comboMinecraftProcess.SelectedIndex < 0 || comboMinecraftProcess.SelectedIndex >= windows.Length)
                     comboMinecraftProcess.SelectedIndex = 0;
             }));
 
@@ -50,9 +58,9 @@ namespace MineClick
             {
                 UpdateProcesses();
                 mcWindow.SendMessage(Window.WM_RBUTTONDOWN, 0x00000001, 0x1E5025B);
-                mcWindow.Minimize();
+                mcWindow.Hide();
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Bruh moment", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void DoMouseUp()
@@ -61,37 +69,9 @@ namespace MineClick
             {
                 UpdateProcesses();
                 mcWindow.SendMessage(Window.WM_RBUTTONUP, 0x00000000, 0x1E5025B);
-                mcWindow.Maximize();
+                mcWindow.Show();
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
-            UpdateProcesses();
-            clickTimer.Interval = 20000;
-            clickTimer.Elapsed += clickTimer_Elapsed;
-        }
-
-        private void btnStart_Click(object sender, EventArgs e)
-        {    
-            clickTimer.Enabled = true;
-
-            btnStart.Enabled = false;
-            btnStop.Enabled = true;
-            comboMinecraftProcess.Enabled = false;
-
-            DoMouseDown();
-        }
-
-        private void btnStop_Click(object sender, EventArgs e)
-        {
-            clickTimer.Enabled = false;
-            DoMouseUp();
-
-            btnStart.Enabled = true;
-            btnStop.Enabled = false;
-            comboMinecraftProcess.Enabled = true;
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Bruh moment", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         void clickTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -102,6 +82,32 @@ namespace MineClick
         private void comboMinecraftProcess_SelectedIndexChanged(object sender, EventArgs e)
         {
             mcWindow = windows[comboMinecraftProcess.SelectedIndex];
+        }
+
+        private void toggleClicker_CheckedChanged(object sender, EventArgs e)
+        {
+            if (toggleClicker.Checked) // Turn on
+            {
+                clickTimer.Enabled = true;
+
+                DoMouseDown();
+
+                comboMinecraftProcess.Enabled = false;
+            }
+            else // Turn off
+            {
+                clickTimer.Enabled = false;
+
+                DoMouseUp();
+
+                comboMinecraftProcess.Enabled = true;
+            }
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (toggleClicker.Checked)
+                DoMouseUp();
         }
     }
 }
