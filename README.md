@@ -7,11 +7,9 @@ Sends right-click to Minecraft window, useful for automatic fishing farms...
 
 1. Press F3 + P in-game to disable pause on lost focus
 2. Run MineClick
-3. Point your mouse wherever you want it to click
-4. ALT + TAB into MineClick and press START
-5. Minecraft should now minimize and start clicking automatically
+3. Point your mouse wherever you want to right-click (e.g. fishing farm)
+4. ALT + TAB into MineClick and toggle the switch
+5. Minecraft window should now hide and you'll start clicking automatically
+6. Toggle the switch again once you are done to restore the window
 
 Needs .NET FW 4 to function
-
-## Comments
-###### I know the code looks like shit, this was made in 1 hour and I can't be bothered to rework it...
