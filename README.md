@@ -3,6 +3,9 @@ Sends right-click to Minecraft window, useful for automatic fishing farms...
 
 ![Screenshot](/img/screen.png)
 
+# Installation
+Download the executable from the [releases](https://github.com/LaBlazer/MineClick/releases) tab or clone and compile the project using VS 2017+ 
+
 # Usage
 
 1. Press F3 + P in-game to disable pause on lost focus
