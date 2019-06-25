@@ -1,5 +1,5 @@
 # :pick:MineClick
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/LaBlazer/MineClick/blob/master/LICENSE) [![Platform](https://img.shields.io/badge/platform-windows-lightgrey.svg)](https://github.com/LaBlazer/MineClick/releases/latest)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/LaBlazer/MineClick/blob/master/LICENSE) [![Build Status](https://travis-ci.org/LaBlazer/MineClick.svg?branch=master)](https://travis-ci.org/LaBlazer/MineClick) [![Platform](https://img.shields.io/badge/platform-windows-lightgrey.svg)](https://github.com/LaBlazer/MineClick/releases/latest)
 
 Sends right-click to Minecraft window, useful for automatic fishing farms...
 
